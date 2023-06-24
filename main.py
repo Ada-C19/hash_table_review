@@ -19,3 +19,7 @@ print("\nAccess the values:")
 print(f"protagonist: {dict.get('protagonist')}")
 print(f"comedy relief: {dict.get('comedy relief')}")
 print(f"supporting: {dict.get('supporting')}")
+
+dict.remove('protagonist')
+print("Removing 'protagonist'")
+print(f"protagonist: {dict.get('protagonist')}")

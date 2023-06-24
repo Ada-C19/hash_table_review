@@ -14,7 +14,8 @@ class HashTable():
         self.arr[index] = val
 
     def remove(self, key):
-        raise NotImplementedError
+        index = self.idx(key)
+        self.arr[index] = None
 
     def get(self, key):
         index = self.idx(key)
