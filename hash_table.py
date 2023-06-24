@@ -17,4 +17,5 @@ class HashTable():
         raise NotImplementedError
 
     def get(self, key):
-        raise NotImplementedError
+        index = self.idx(key)
+        return self.arr[index]
