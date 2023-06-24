@@ -1,9 +1,12 @@
 class HashTable():
+    SIZE = 10
+
     def __init__(self) -> None:
-        self.arr = []
+        self.arr = [None for _ in range(self.SIZE)]
 
     def insert(self, key, val):
-        raise NotImplementedError
+        index = hash(key) % self.SIZE
+        self.arr[index] = val
 
     def remove(self, key):
         raise NotImplementedError
