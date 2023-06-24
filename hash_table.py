@@ -1,11 +1,16 @@
 class HashTable():
-    SIZE = 10
+    def __init__(self, size = 10) -> None:
+        self.arr = [None for _ in range(size)]
+        self.size = size
 
-    def __init__(self) -> None:
-        self.arr = [None for _ in range(self.SIZE)]
+    def idx(self, key: str) -> int:
+        return hash(key) % self.size
 
     def insert(self, key, val):
-        index = hash(key) % self.SIZE
+        index = self.idx(key)
+        print(index, key)
+        if self.arr[index] is not None:
+            raise KeyError("Hash collision!")
         self.arr[index] = val
 
     def remove(self, key):
