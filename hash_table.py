@@ -1,22 +1,38 @@
 class HashTable():
     def __init__(self, size = 10) -> None:
-        self.arr = [None for _ in range(size)]
+        self.arr = [[] for _ in range(size)]
         self.size = size
 
     def idx(self, key: str) -> int:
         return hash(key) % self.size
 
-    def insert(self, key, val):
+    def insert(self, key, val) -> None:
         index = self.idx(key)
-        print(index, key)
-        if self.arr[index] is not None:
-            raise KeyError("Hash collision!")
-        self.arr[index] = val
+        chain = self.arr[index]
+
+        newEntry = (key, val)
+        for i, (k, v) in enumerate(chain):
+            # We already have this key in the hash table
+            # Replace its value.
+            if k == key:
+                chain[i] = newEntry
+                return
+            
+        chain.append(newEntry)
 
     def remove(self, key):
         index = self.idx(key)
-        self.arr[index] = None
+        chain = self.arr[index]
+
+        for i, (k, v) in enumerate(chain):
+            if k == key:
+                chain.pop(i)
+                return
 
     def get(self, key):
         index = self.idx(key)
-        return self.arr[index]
+        chain = self.arr[index]
+
+        for (k, v) in chain:
+            if k == key:
+                return v
